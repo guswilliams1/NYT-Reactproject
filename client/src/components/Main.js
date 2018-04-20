@@ -14,12 +14,12 @@ class Main extends Component {
     saved: []
   };
 
-  // When the component mounts, get a list of all saved articles and update this.state.saved
+ 
   componentDidMount() {
     this.getSavedArticles()
   }
 
-  // Method for getting saved articles (all articles) from the db
+ 
   getSavedArticles = () => {
     API.getArticle()
       .then((res) => {
@@ -27,7 +27,7 @@ class Main extends Component {
       });
   }
 
-  // A helper method for rendering one search results div for each article
+ 
   renderArticles = () => {
     return this.state.articles.map(article => (
       <Results
@@ -42,7 +42,7 @@ class Main extends Component {
     ));
   }
 
-  // A helper method for rendering one div for each saved article
+  
   renderSaved = () => {
     return this.state.saved.map(save => (
       <Saved
@@ -57,22 +57,21 @@ class Main extends Component {
     ));
   }
 
-  // Keep track of what user types into topic input so that input can be grabbed later
+
   handleTopicChange = (event) => {
     this.setState({ topic: event.target.value });
   }
 
-  // Keep track of what user types into topic input so that input can be grabbed later
   handleStartYearChange = (event) => {
     this.setState({ startYear: event.target.value });
   }
 
-  // Keep track of what user types into topic input so that input can be grabbed later
+ 
   handleEndYearChange = (event) => {
     this.setState({ endYear: event.target.value });
   }
 
-  // When the search form submits, perform NYT api search with user input
+ 
   handleFormSubmit = (event) => {
     event.preventDefault();
     console.log("Getting NYT Articles");
@@ -86,7 +85,7 @@ class Main extends Component {
       });
   }
 
-  // When save article button is clicked, add article to db
+
   handleSaveButton = (id) => {
     const findArticleByID = this.state.articles.find((el) => el._id === id);
     console.log("findArticleByID: ", findArticleByID);
@@ -95,7 +94,7 @@ class Main extends Component {
     .then(this.getSavedArticles());
   }
 
-  // When delete article button is clicked, remove article from db
+  
   handleDeleteButton = (id) => {
     API.deleteArticle(id)
       .then(this.getSavedArticles());
